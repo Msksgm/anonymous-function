@@ -14,11 +14,10 @@ func throwErr(flag bool) error {
 	}
 }
 
-func returnErr(flag bool) error {
+func returnErr(flag bool) (err error) {
 	fmt.Println("returnErr")
-	defer func() error {
-		err := throwErr(flag)
-		return err
+	defer func() {
+		err = throwErr(flag)
 	}()
 	return nil
 }
